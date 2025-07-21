@@ -1,0 +1,43 @@
+[
+  {
+  "personalInfo": {
+    "firstName": "generated with utils/dataRandomGenerator",
+    "lastName": "generated with utils/dataRandomGenerator",
+    "email": "generated with utils/dataRandomGenerator",
+    "confirmEmail": "generated with utils/dataRandomGenerator",
+    "birthday": "generated with utils/dataRandomGenerator",
+    "residenceStatus": "US Citizen",
+    "phone": "5551234567",
+    "currentLoan": "No"
+  },
+  "vehicleInfo": {
+    "vehicleType": "Car",
+    "licensePlate": "a",
+    "state": "VA",
+    "howMuchOwe": "10000",
+    "vehiclesMiles": "1000",
+    "monthlyCarPayment": "350"
+  },
+  "detailsInfo": {
+    "streetAddress": "123 North Virginia Avenue",
+    "city": "Oklahoma City",
+    "state": "Oklahoma",
+    "zipCode": "90210",
+    "employmentStatus": "Employed",
+    "annualIncome": "75000"
+  },
+  "housingDetailsInfo": {
+    "yearsLivedThere": "1",
+    "monthsLivedThere": "0",
+    "rentOrOwn": "Own",
+    "monthlyRentMortgage": "1000",
+    "employmentStatus": "Employed",
+    "annualIncome": "75000"
+  },
+  "expectedTexts": {
+      "featureTitle": "Select your car’s special features",
+        "featureDescription": "Your loan includes special features"
+      },
+  "testResult": "passed"
+  } 
+] 

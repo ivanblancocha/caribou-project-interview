@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Playwright test results and reports
+test-results/
+playwright-report/
+*.log
+
+# Environment files
+.env
+.env.*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Auth/cookie/session files
+.auth/
+*.local
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+
+# Dependency lock files (optional, if you don't want to commit them)
+# package-lock.json
+# yarn.lock
+
+# Compiled output (if using TypeScript)
+dist/
+build/
+out/
