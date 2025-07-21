@@ -13,33 +13,16 @@ export class LoanOptionsPage extends BasePage {
   }
 
   async waitForLoanOptionsToLoad(): Promise<void> {
-    try {
-      await this.isElementVisible(this.loanOptions.getByRole('button', { name: 'Select' }), 20000);
-    } catch (error) {
-      console.log('Error waiting for loan options to load', error);
-      throw error;
-    }
+    await this.isElementVisible(this.loanOptions.getByRole('button', { name: 'Select' }), 20000);
   }
 
   async selectHSBCButton(): Promise<void> {
-    try {
-      await this.waitForLoanOptionsToLoad();
-      await this.clickWithRetry(this.selectHSBCOption);
-    } catch (error) {
-      console.log('Error selecting HSBC loan option', error);
-      throw error;
-    }
+    await this.waitForLoanOptionsToLoad();
+    await this.clickWithRetry(this.selectHSBCOption);
   }
 
   async selectHSBCLoan(): Promise<void> {
-    try {
-      await this.selectHSBCButton();
-      
-    } catch (error) {
-      console.log('Error selecting loan option', error);
-      throw error;
-    }
-    
+    await this.selectHSBCButton();
   }
 
 

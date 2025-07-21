@@ -28,24 +28,14 @@ export abstract class BasePage {
    * Wait for page to be fully loaded
    */
   protected async waitForPageLoad(): Promise<void> {
-    try {
-      await this.page.waitForLoadState('load');
-    } catch (error) {
-      console.log('Error waiting for page load', error);
-      throw error;
-    }
+    await this.page.waitForLoadState('load');
   }
 
   /**
    * Wait for element to be visible
    */
   protected async waitForElement(locator: Locator, timeout = 3000): Promise<void> {
-    try {
-      await locator.waitFor({ state: 'visible', timeout });
-    } catch (error) {
-      console.log('Error waiting for element to be visible', error);
-      throw error;
-    }
+    await locator.waitFor({ state: 'visible', timeout });
   }
 
   /**
@@ -99,7 +89,6 @@ export abstract class BasePage {
       await locator.scrollIntoViewIfNeeded(); 
       return await locator.isVisible();
     } catch {
-      console.log('Element is not visible');
       return false;
       
     }
@@ -121,38 +110,30 @@ export abstract class BasePage {
 
     while (attempts < maxRetries) {
       try {
-        console.log('---------------------------------> Entering retryStep', attempts);
-        console.log(`🌀 [${stepName}] Attempt ${attempts + 1} of ${maxRetries}`);
-
         await stepCallback();
 
         // Espera por posible error tardío
         await this.page.waitForTimeout(5000);
 
         const hasError = await isErrorVisibleCallback();
-        console.log(`🛑 [${stepName}] Error visible: ${hasError}`);
 
         if (hasError) {
           throw new Error(`[${stepName}] Error element detected`);
         }
 
-        console.log(`✅ [${stepName}] Step completed successfully`);
         return;
 
       } catch (error) {
 
         if (attempts >= maxRetries) {
-          console.error(`❌ [${stepName}] Max retries reached`);
           throw error;
         }
 
-        console.warn(`🔁 [${stepName}] Retrying after page reload...`);
         await this.page.reload();
         await this.page.waitForLoadState();
 
       }
       attempts++;
-      console.log('attempts ', attempts);
     }
   }
 

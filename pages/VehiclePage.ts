@@ -25,61 +25,32 @@ export class VehiclePage extends BasePage{
     this.errorElement = this.page.locator('div[type="error"]');
   }
     async selectVehicleLicPlateType(): Promise<void> {
-        try {
-            await this.radioLicensePlate.check();
-        } catch (error) {
-            console.log('Error selecting vehicle license plate type', error);
-            throw error;
-        }
+        await this.radioLicensePlate.check();
     }
 
     async completeLicensePlate(plate: string): Promise<void> {
-        try {
-            await this.fillWithRetry(this.licPlateInput, plate);
-        } catch (error) {
-            console.log('Error completing license plate', error);
-        }
+        await this.fillWithRetry(this.licPlateInput, plate);
     }
 
     async selectState(state: string): Promise<void> {
-        try {
-            await this.selectOptionWithRetry(this.stateSelector, state);
-        } catch (error) {
-            console.log('Error selecting state', error);
-        }
+        await this.selectOptionWithRetry(this.stateSelector, state);
     }
 
     async completeHowMuchOwe(amount: string): Promise<void> {
-        try {
-            await this.fillWithRetry(this.howMuchOweInput, amount);
-        } catch (error) {
-            console.log('Error completing how much owe', error);
-        }
+        await this.fillWithRetry(this.howMuchOweInput, amount);
     }
 
     async completeVehiclesMiles(miles: string): Promise<void> {
-        try {
-            await this.fillWithRetry(this.vehiclesMilesInput, miles);
-        } catch (error) {
-            console.log('Error completing vehicles miles', error);
-        }
+        await this.fillWithRetry(this.vehiclesMilesInput, miles);
     }
 
     async completeMonthlyCarPayment(payment: string): Promise<void> {
-        try {
-            await this.fillWithRetry(this.monthlyCarPaymentInput, payment);
-        } catch (error) {
-            console.log('Error completing monthly car payment', error);
-        }
+        await this.fillWithRetry(this.monthlyCarPaymentInput, payment);
     }
 
     async clickContinueButton(): Promise<void> {
-        try {
-           await this.continueButton.scrollIntoViewIfNeeded();
-            await this.clickWithRetry(this.continueButton);
-        } catch (error) {
-            console.log('Error clicking continue button', error);
-        }
+        await this.continueButton.scrollIntoViewIfNeeded();
+        await this.clickWithRetry(this.continueButton);
     }
 
     async isErrorVisible(): Promise<boolean> {

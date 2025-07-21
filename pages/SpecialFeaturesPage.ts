@@ -12,28 +12,15 @@ export class SpecialFeaturesPage extends BasePage {
   }
 
   async verifyFeatureTitleDisplayed(): Promise<void> {
-    try {
-      await this.isElementVisible(this.featureTitle);
-    } catch (error) {
-      console.log('Error verifying feature title displayed', error);
-    }
+    await this.isElementVisible(this.featureTitle);
   }
 
   async verifyContinueButtonDisplayed(): Promise<void> {
-    try {
-      await this.isElementVisible(this.continueButton);
-    } catch (error) {
-      console.log('Error verifying continue button displayed', error);
-    }
+    await this.isElementVisible(this.continueButton);
   }
 
   async getFeatureTitleText(): Promise<string> {
-    try {
-      await this.isElementVisible(this.featureTitle);
-      return await this.featureTitle.textContent() || '';
-    } catch (error) {
-      console.log('Error getting feature title text', error);
-      throw error;
-    }
+    await this.isElementVisible(this.featureTitle);
+    return await this.featureTitle.textContent() || '';
   }
 } 

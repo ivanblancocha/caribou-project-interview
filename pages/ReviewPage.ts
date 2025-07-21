@@ -22,42 +22,22 @@ export class ReviewPage extends BasePage {
   }
 
   async verifyPersonalInfoDisplayed(): Promise<void> {
-    try {
-      await this.isElementVisible(this.personalInfoSection);
-    } catch (error) {
-      console.log('Error verifying personal info displayed', error);
-    }
+    await this.isElementVisible(this.personalInfoSection);
   }
 
   async verifyVehicleInfoDisplayed(): Promise<void> {
-    try {
-      await this.isElementVisible(this.vehicleInfoSection);
-    } catch (error) {
-      console.log('Error verifying vehicle info displayed', error);
-    }
+    await this.isElementVisible(this.vehicleInfoSection);
   }
 
   async verifyResidentialInfoDisplayed(): Promise<void> {
-    try {
-      await this.isElementVisible(this.residentialInfoSection);
-    } catch (error) {
-      console.log('Error verifying residential info displayed', error);
-    }
+    await this.isElementVisible(this.residentialInfoSection);
   }
 
   async checkAgreementCreditReportCheckbox(): Promise<void> {
-    try {
-      await this.clickWithRetry(this.agreementCreditReportCheckbox);
-    } catch (error) {
-      console.log('Error checking agreement credit report checkbox', error);
-    }
+    await this.clickWithRetry(this.agreementCreditReportCheckbox);
   }
 
   async clickContinueButton(): Promise<void> {
-    try {
-      await this.clickWithRetry(this.continueButton);
-    } catch (error) {
-      console.log('Error clicking continue button', error);
-    }
+    await this.clickWithRetry(this.continueButton);
   }
 } 
