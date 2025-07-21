@@ -1,0 +1,50 @@
+name: Playwright Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_url:
+        description: 'Base URL for tests'
+        required: true
+        default: 'https://new.apply.caribou-qa.com/'
+      browser:
+        description: 'Browser to run tests on (chromium, firefox, webkit)'
+        required: true
+        default: 'chromium'
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TEST_URL: ${{ github.event.inputs.test_url || 'https://new.apply.caribou-qa.com/' }}
+      BROWSER: ${{ github.event.inputs.browser || 'chromium' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright and browsers
+        run: npx playwright install --with-deps
+
+      - name: Create .env.staging file
+        run: echo "URL=${{ env.TEST_URL }}" > .env.staging
+
+      - name: Run Playwright tests (headless)
+        run: npx playwright test --reporter=html --project=${{ env.BROWSER }}
+
+      - name: Upload Playwright HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/
