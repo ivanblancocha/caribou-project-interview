@@ -11,6 +11,10 @@ on:
         description: 'Browser to run tests on (chromium, firefox, webkit)'
         required: true
         default: 'chromium'
+      env:  
+        description: 'Environment to run tests on (staging, production)'
+        required: true
+        default: 'staging'
   push:
     branches: [main]
   pull_request:
@@ -41,7 +45,7 @@ jobs:
         run: echo "BASE_URL=${{ env.TEST_URL }}" > .env.staging
 
       - name: Run Playwright tests (headless)
-        run: npx playwright test --reporter=html --project=${{ env.BROWSER }}
+        run: ENV=${{ env.ENV }} npx playwright test --reporter=html --project=${{ env.BROWSER }}
 
       - name: Upload Playwright HTML report
         uses: actions/upload-artifact@v4
