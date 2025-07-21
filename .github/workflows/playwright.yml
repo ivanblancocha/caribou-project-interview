@@ -38,7 +38,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Create .env.staging file
-        run: echo "URL=${{ env.TEST_URL }}" > .env.staging
+        run: echo "BASE_URL=${{ env.TEST_URL }}" > .env.staging
 
       - name: Run Playwright tests (headless)
         run: npx playwright test --reporter=html --project=${{ env.BROWSER }}
