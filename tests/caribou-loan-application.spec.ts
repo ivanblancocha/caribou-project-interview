@@ -1,5 +1,5 @@
 import { RandomDataGenerator } from '../utils/randomDataGenerator';
-import { test, expect, testData } from '../fixtures/fixture';
+import { test, expect, testData } from '../fixtures/Fixture';
 
 test.describe('Caribou Loan Application - Complete Flow', () => {
 
