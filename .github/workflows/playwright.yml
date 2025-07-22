@@ -25,6 +25,7 @@ jobs:
     env:
       TEST_URL: ${{ github.event.inputs.test_url || 'https://new.apply.caribou-qa.com/' }}
       BROWSER: ${{ github.event.inputs.browser || 'chromium' }}
+      ENV: ${{ github.event.inputs.env || 'staging' }}
 
     steps:
       - name: Checkout code
@@ -45,7 +46,9 @@ jobs:
         run: echo "BASE_URL=${{ env.TEST_URL }}" > .env.staging
 
       - name: Run Playwright tests (headless)
-        run: ENV=${{ env.ENV }} npx playwright test --reporter=html --project=${{ env.BROWSER }}
+        run: |
+          echo "Running with ENV=$ENV"
+          ENV=$ENV npx playwright test --reporter=html --project=$BROWSER
 
       - name: Upload Playwright HTML report
         uses: actions/upload-artifact@v4
